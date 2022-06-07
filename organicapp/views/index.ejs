@@ -1,0 +1,316 @@
+<%- include('partials/head.ejs') %>
+  <div class="row justify-content-center" style="padding-top:20px;border:none;">
+    <div class="card text-center" style="border:none;background-color: #ffffff!important;">
+      <div class="card-body">
+        <h1 class="display-4" data-test-id="main-page-data-header">Tables</h1>
+        <% var jsonData=JSON.parse(listoffoods); for (var i=0; i < jsonData.length; i++) {jsonData[i];} %>
+          <% jsonData.forEach(function(product){ %>
+            <div class="row" style="background-color: #ffffff;">
+              <div class="col-sm-12">
+                <div class="card" style="background-color: #e9ecef;">
+                  <div class="card-body lead" style="text-align: center;">
+                    <h3 class="card-title" data-test-id="table<%= product.toUpperCase(); %>">
+                      <%= product.toUpperCase(); %>
+                    </h3>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <a id="getAllData" data-test-id="getall<%= product.toUpperCase(); %>"
+                          href="<%= `/food/${product}` %>" class="btn btn-primary btn-lg"
+                          style="overflow:hidden;word-wrap:break-word;width:80%;background-color: rgb(145, 67, 236); border-color:rgb(145, 67, 236);">GET
+                          ALL <%= product.toUpperCase(); %></a>
+                      </div>
+                      <% if(product !="appusers" ){ %>
+                        <div class="col-sm-6">
+                          <a href="<%= `/food/products/${product}` %>" data-test-id="add<%= product.toUpperCase(); %>"
+                            class="btn btn-primary btn-lg"
+                            style="overflow:hidden;word-wrap:break-word;width:80%;background-color: rgb(153, 178, 166); border-color:rgb(153, 178, 166);">ADD
+                            <%= product.toUpperCase(); %>
+                          </a>
+                        </div>
+                        <%}%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </br>
+            <% }) %>
+              <h1 class="display-4" id="Results" data-test-id="Results">Results- <%=(title)%>
+              </h1>
+              <% if(food){ %>
+                <% for (var j=0; j < JSON.parse(JSON.stringify(fooddata)).length; j++) { %>
+                  <ul class="list-group list-group-flush" data-test-id="Results-Body">
+                    <% if(diffscema){ %>
+                      <% if(sweet){ %>
+                        <% var sweetId=JSON.parse(JSON.stringify(fooddata))[j].id; var urlSweet="/food/products/sweet/"
+                          + sweetId; console.log(urlSweet); %>
+                          <form action=<%=urlSweet %> method="POST" >
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead">Color:</td>
+                                  <td style="width:50%" class="lead">
+                                    <%= JSON.parse(JSON.stringify(fooddata))[j].Color %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead">Component:</td>
+                                  <td style="width:50%" class="lead">
+                                    <%= JSON.parse(JSON.stringify(fooddata))[j].Component %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead">Id:</td>
+                                  <td style="width:50%" class="lead">
+                                    <%= JSON.parse(JSON.stringify(fooddata))[j].id %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead">Name:</td>
+                                  <td style="width:50%" class="lead">
+                                    <%= JSON.parse(JSON.stringify(fooddata))[j].name %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead"> Options:</td>
+                                  <td style="width:50%" class="lead">
+                                    <button type="submit" class="btn btn-danger" value="sweetedit"
+                                      name="gEditDelete">EDIT</button>
+                                    <button type="submit" class="btn btn-danger" value="sweetdelete"
+                                      name="gEditDelete">DELETE</button>
+                                    <input type="hidden" value="<%= table %>" name="table" />
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                          </form>
+                          <% } else if (appusers) { %>
+                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                              <table style="width:100%;margin-bottom: 0px !important;">
+                                <tr>
+                                  <td style="width:50%" class="lead">username:</td>
+                                  <td style="width:50%" class="lead">
+                                    <%= JSON.parse(JSON.stringify(fooddata))[j].username %>
+                                  </td>
+                                </tr>
+                              </table>
+                            </li>
+                            <% } else if (organicproduts) { %>
+
+                              <% var sweetId=JSON.parse(JSON.stringify(fooddata))[j].id; var
+                                urlStaplefood="/food/products/organicproduct/" + sweetId; console.log(urlSweet); %>
+                                <form action=<%=urlStaplefood %> method="POST" >
+                                  <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                    <table style="width:100%;margin-bottom: 0px !important;">
+                                      <tr>
+                                        <td style="width:50%" class="lead">Energy:</td>
+                                        <td style="width:50%" class="lead">
+                                          <%= JSON.parse(JSON.stringify(fooddata))[j].Energy %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </li>
+                                  <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                    <table style="width:100%;margin-bottom: 0px !important;">
+                                      <tr>
+                                        <td style="width:50%" class="lead">WaterContent:</td>
+                                        <td style="width:50%" class="lead">
+                                          <%= JSON.parse(JSON.stringify(fooddata))[j].WaterContent %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </li>
+                                  <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                    <table style="width:100%;margin-bottom: 0px !important;">
+                                      <tr>
+                                        <td style="width:50%" class="lead">Id:</td>
+                                        <td style="width:50%" class="lead">
+                                          <%= JSON.parse(JSON.stringify(fooddata))[j].id %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </li>
+                                  <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                    <table style="width:100%;margin-bottom: 0px !important;">
+                                      <tr>
+                                        <td style="width:50%" class="lead">Name:</td>
+                                        <td style="width:50%" class="lead">
+                                          <%= JSON.parse(JSON.stringify(fooddata))[j].name %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </li>
+                                  <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                    <table style="width:100%;margin-bottom: 0px !important;">
+                                      <tr>
+                                        <td style="width:50%" class="lead"> Options:</td>
+                                        <td style="width:50%" class="lead">
+                                          <button type="submit" class="btn btn-danger" value="staplefoodedit"
+                                            name="gEditDelete">EDIT</button>
+                                          <button type="submit" class="btn btn-danger" value="staplefooddelete"
+                                            name="gEditDelete">DELETE</button>
+                                          <input type="hidden" value="<%= table %>" name="table" />
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </li>
+                                </form>
+
+
+                                <% } else if (staplefood) { %>
+
+                                  <% var sweetId2=JSON.parse(JSON.stringify(fooddata))[j].id; var
+                                    urlStaplefood="/food/products/staplefood/" + sweetId2; %>
+                                    <form action=<%=urlStaplefood %> method="POST" >
+                                      <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                        <table style="width:100%;margin-bottom: 0px !important;">
+                                          <tr>
+                                            <td style="width:50%" class="lead">Energy:</td>
+                                            <td style="width:50%" class="lead">
+                                              <%= JSON.parse(JSON.stringify(fooddata))[j].Energy %>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </li>
+                                      <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                        <table style="width:100%;margin-bottom: 0px !important;">
+                                          <tr>
+                                            <td style="width:50%" class="lead">WaterContent:</td>
+                                            <td style="width:50%" class="lead">
+                                              <%= JSON.parse(JSON.stringify(fooddata))[j].WaterContent %>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </li>
+                                      <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                        <table style="width:100%;margin-bottom: 0px !important;">
+                                          <tr>
+                                            <td style="width:50%" class="lead">Id:</td>
+                                            <td style="width:50%" class="lead">
+                                              <%= JSON.parse(JSON.stringify(fooddata))[j].id %>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </li>
+                                      <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                        <table style="width:100%;margin-bottom: 0px !important;">
+                                          <tr>
+                                            <td style="width:50%" class="lead">Name:</td>
+                                            <td style="width:50%" class="lead">
+                                              <%= JSON.parse(JSON.stringify(fooddata))[j].name %>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </li>
+                                      <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                        <table style="width:100%;margin-bottom: 0px !important;">
+                                          <tr>
+                                            <td style="width:50%" class="lead"> Options:</td>
+                                            <td style="width:50%" class="lead">
+                                              <button type="submit" class="btn btn-danger" value="staplefoodedit"
+                                                name="gEditDelete">EDIT</button>
+                                              <button type="submit" class="btn btn-danger" value="staplefooddelete"
+                                                name="gEditDelete">DELETE</button>
+                                              <input type="hidden" value="<%= table %>" name="table" />
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </li>
+                                    </form>
+                                    <% } %>
+
+
+
+
+
+
+
+                                      <% } else { %>
+                                        <% var d=JSON.parse(JSON.stringify(fooddata))[j].id; var
+                                          urld="/food/products/product/" + d; %>
+                                          <form action=<%=urld %> method="POST" >
+                                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                              <table style="width:100%;margin-bottom: 0px !important;">
+                                                <tr>
+                                                  <td style="width:50%" class="lead">Color:</td>
+                                                  <td style="width:50%" class="lead">
+                                                    <%= JSON.parse(JSON.stringify(fooddata))[j].Color %>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                            </li>
+                                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                              <table style="width:100%;margin-bottom: 0px !important;">
+                                                <tr>
+                                                  <td style="width:50%" class="lead">Property:</td>
+                                                  <td style="width:50%" class="lead">
+                                                    <%= JSON.parse(JSON.stringify(fooddata))[j].Property %>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                            </li>
+                                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                              <table style="width:100%;margin-bottom: 0px !important;">
+                                                <tr>
+                                                  <td style="width:50%" class="lead">Id:</td>
+                                                  <td style="width:50%" class="lead">
+                                                    <%= JSON.parse(JSON.stringify(fooddata))[j].id %>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                            </li>
+                                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                              <table style="width:100%;margin-bottom: 0px !important;">
+                                                <tr>
+                                                  <td style="width:50%" class="lead">Name:</td>
+                                                  <td style="width:50%" class="lead">
+                                                    <%= JSON.parse(JSON.stringify(fooddata))[j].name %>
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                            </li>
+                                            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                                              <table style="width:100%;margin-bottom: 0px !important;">
+                                                <tr>
+                                                  <td style="width:50%" class="lead"> Options:</td>
+                                                  <td style="width:50%" class="lead">
+                                                    <button type="submit" class="btn btn-danger" value="productedit"
+                                                      name="gEditDelete">EDIT</button>
+                                                    <button type="submit" class="btn btn-danger" value="productdelete"
+                                                      name="gEditDelete">DELETE</button>
+                                                    <input type="hidden" value="<%= table %>" name="table" />
+                                                  </td>
+                                                </tr>
+                                              </table>
+                                            </li>
+                                          </form>
+                                          <% } %>
+                  </ul>
+                  <hr style="height:2px; width: 20px; background-color: black; width: 100%;">
+                  <% } %>
+                    <% } %>
+      </div>
+      <div class="card-footer text-muted">
+        Node.js app to run cypress tests written by Jinan Kordab
+      </div>
+    </div>
+  </div>
+  <%- include('partials/foot.ejs') %>

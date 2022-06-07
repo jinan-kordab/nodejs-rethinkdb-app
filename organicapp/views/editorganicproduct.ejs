@@ -1,0 +1,70 @@
+<%- include('partials/head.ejs') %>
+    <div class="row justify-content-center" style="padding-top:20px;border:none;">
+      <div class="card text-center" style="border:none;background-color: #ffffff!important;">
+        <div class="card-body">
+          <h1 class="display-4">Edit existing organicproduct </h1>
+          <div class="row" style="background-color: #ffffff;">
+            <div class="col-sm-12">
+              <div class="card" style="background-color: #e3e2df;">
+                <div class="card-body lead" style="text-align: left;">
+                  <h3 class="card-title">
+                    </h5>
+                    <p class="card-text">This form allows you to edit organic product</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% var jsonData=JSON.parse(selStapleFood); %>
+            <% var clr=jsonData[0].Energy; var cmpnt=jsonData[0].WaterContent; var idd=jsonData[0].id; var
+              nme=jsonData[0].name; %>
+              <% var urlStaple="/food/products/organicproduct/" + idd; console.log(urlStaple); %>
+                <h1 class="display-4">Form</h1>
+                <form action=<%=urlStaple %> method="POST">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                      <table style="width:100%;margin-bottom: 0px !important;">
+                        <tr>
+                          <td style="width:50%" class="lead">Energy:</td>
+                          <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                              placeholder="" name="energy" value="<%= clr %>"> </td>
+                        </tr>
+                      </table>
+                    </li>
+                    <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                      <table style="width:100%;margin-bottom: 0px !important;">
+                        <tr>
+                          <td style="width:50%" class="lead">WaterContent:</td>
+                          <td style="width:100%" class="lead"><input class="form-control form-control-lg" type="text"
+                              placeholder="" name="watercontent" value="<%=cmpnt%>"></td>
+                        </tr>
+                      </table>
+                    </li>
+                    <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                      <table style="width:100%;margin-bottom: 0px !important;">
+                        <tr>
+                          <td style="width:50%" class="lead">Id:</td>
+                          <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                              placeholder="" name="id" value="<%= idd %>"></td>
+                        </tr>
+                      </table>
+                    </li>
+                    <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                      <table style="width:100%;margin-bottom: 0px !important;">
+                        <tr>
+                          <td style="width:50%" class="lead">Name:</td>
+                          <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                              placeholder="" name="name" value="<%= nme %>"></td>
+                        </tr>
+                      </table>
+                    </li>
+                  </ul>
+                  <button type="submit" class="btn btn-danger" name="gEditDelete" value="update">Submit</button>
+                </form>
+                <hr style="height:2px; width: 20px; background-color: black; width: 100%;">
+        </div>
+        <div class="card-footer text-muted">
+          footer - staplefood edit
+        </div>
+      </div>
+    </div>
+<%- include('partials/foot.ejs') %>

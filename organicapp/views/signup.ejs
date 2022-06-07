@@ -1,0 +1,29 @@
+<%- include('partials/landinghead.ejs') %>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3" data-test-id="singup-title">Sign Up Form</h1>
+        <p class="col-lg-10 fs-4" data-test-id="sinup-text">Use this form to sign up and add a new user to RethinkDb
+        </p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" action="/signup" method="post">
+          <div class="form-floating mb-3">
+            <input type="text" data-test-id="signup-username" class="form-control" id="floatingInput" name="username"
+              placeholder="User Name">
+            <label for="floatingInput" data-test-id="signup-username-label">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" data-test-id="signup-password" name="password" placeholder="Enter your password"
+              class="form-control">
+            <label for="floatingPassword" data-test-id="signup-password-label">Password</label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" data-test-id="signup-submit-button" type="submit">signup</button>
+          <hr class="my-4">
+          <small class="text-muted" data-test-id="signup-terms-of-use">By signing in, you agree to the terms of
+            use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%- include('partials/foot.ejs') %>

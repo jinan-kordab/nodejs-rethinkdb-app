@@ -1,0 +1,66 @@
+<%- include('partials/head.ejs') %>
+  <div class="row justify-content-center" style="padding-top:20px;border:none;">
+    <div class="card text-center" style="border:none;background-color: #ffffff!important;">
+      <div class="card-body">
+        <h1 class="display-4">Add new sweet </h1>
+        <div class="row" style="background-color: #ffffff;">
+          <div class="col-sm-12">
+            <div class="card" style="background-color: #e3e2df;">
+              <div class="card-body lead" style="text-align: left;">
+                <h3 class="card-title">
+                  </h5>
+                  <p class="card-text">This form allows you to add new sweet to RethinkDB database</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h1 class="display-4">Form</h1>
+        <form action="/food/products/sweet/" method="POST">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+              <table style="width:100%;margin-bottom: 0px !important;">
+                <tr>
+                  <td style="width:50%" class="lead">Color:</td>
+                  <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                      placeholder="" name="color"> </td>
+                </tr>
+              </table>
+            </li>
+            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+              <table style="width:100%;margin-bottom: 0px !important;">
+                <tr>
+                  <td style="width:50%" class="lead">Component:</td>
+                  <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                      placeholder="" name="property"></td>
+                </tr>
+              </table>
+            </li>
+            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+              <table style="width:100%;margin-bottom: 0px !important;">
+                <tr>
+                  <td style="width:50%" class="lead">Id:</td>
+                  <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                      placeholder="" name="id"></td>
+                </tr>
+              </table>
+            </li>
+            <li class="list-group-item" style="padding: 0rem 0rem !important;">
+              <table style="width:100%;margin-bottom: 0px !important;">
+                <tr>
+                  <td style="width:50%" class="lead">Name:</td>
+                  <td style="width:50%" class="lead"><input class="form-control form-control-lg" type="text"
+                      placeholder="" name="name"></td>
+                </tr>
+              </table>
+            </li>
+          </ul>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+        <hr style="height:2px; width: 20px; background-color: black; width: 100%;">
+      </div>
+      <div class="card-footer text-muted">
+        Node.js app to run cypress tests written by Jinan Kordab
+      </div>
+    </div>
+  </div>
+  <%- include('partials/foot.ejs') %>

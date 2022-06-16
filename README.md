@@ -68,4 +68,7 @@ socket.io: Takes care of asyncroneous communications sent by changefeeds from Re
 </p>
   </ol>
   </p>
+<p> I wrote more about this app on my 
+blog here: <a href = "https://thoughtsonprogramming.wordpress.com/">my blog post</a> including 
+discussion on unit and integration QA testing in Cypress</p>
   </p>

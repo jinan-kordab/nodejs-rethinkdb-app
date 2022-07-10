@@ -1,0 +1,34 @@
+<%- include('partials/landinghead.ejs') %>
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3" data-test-id="loginpagetitle">Use this form to Log In</h1>
+        <p class="col-lg-10 fs-4" data-test-id="loginpagetext">This is a node.js app built to run cypress tests
+          .It uses EJS template engine, passport for authentication and authorization, bcrypt to store hashed passwords
+          in RethinkDb database, and rethinkdbdash to communicate with RethinkDb. The reason I chose RethinkDb is
+          because it has something called "changesets" which allows RethinkDb to send notification to clients
+          directly.This functionality is in Admin page in this app.
+        </p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" action="/login" method="post">
+          <div class="form-floating mb-3">
+            <input type="text" data-test-id="login-username-textbox" class="form-control" id="floatingInput"
+              placeholder="username" name="username">
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" data-test-id="login-password-textbox" class="form-control" id="floatingPassword"
+              placeholder="Password" name="password">
+            <label for="floatingPassword">Password</label>
+          </div>
+
+          <button class="w-100 btn btn-lg btn-primary" data-test-id="login-page-submit-button"
+            type="submit">login</button>
+          <hr class="my-4">
+          <small class="text-muted">By logging in, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%- include('partials/foot.ejs') %>

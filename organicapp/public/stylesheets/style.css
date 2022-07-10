@@ -1,0 +1,19 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+
+.body-img {
+  /* background-image: url('/images/IMG_4088.jpg'); */
+  background-color:white;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* background-color: #464646; */
+}
+

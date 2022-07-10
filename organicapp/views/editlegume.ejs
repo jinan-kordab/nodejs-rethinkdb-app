@@ -1,0 +1,82 @@
+<%- include('partials/head.ejs') %>
+    <div class="row justify-content-center" style="padding-top:20px;border:none;">
+      <div class="card text-center" style="border:none;background-color: #ffffff!important;">
+        <div class="card-body">
+          <%if(Table=="legume" ){%>
+            <h1 class="display-4">Edit existing legumes </h1>
+            <%}else{%>
+              <h1 class="display-4">Edit existing fruit</h1>
+              <%}%>
+                <div class="row" style="background-color: #ffffff;">
+                  <div class="col-sm-12">
+                    <div class="card" style="background-color: #e3e2df;">
+                      <div class="card-body lead" style="text-align: left;">
+                        <h3 class="card-title">
+                          </h5>
+                          <p class="card-text">This form allows you to add new sweet to RethinkDB database</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% var jsonData=JSON.parse(selectedFood); %>
+                  <% var clr=jsonData[0].Color; var property=jsonData[0].Property; var idd=jsonData[0].id; var
+                    nme=jsonData[0].name; %>
+                    <% var urld="/food/products/product/" + idd; console.log(urld); %>
+                      <h1 class="display-4">Form</h1>
+                      <form action=<%=urld %> method="POST">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                            <table style="width:100%;margin-bottom: 0px !important;">
+                              <tr>
+                                <td style="width:50%" class="lead">Color:</td>
+                                <td style="width:50%" class="lead"><input class="form-control form-control-lg"
+                                    type="text" placeholder="" name="color" value="<%= clr %>"> </td>
+                              </tr>
+                            </table>
+                          </li>
+                          <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                            <table style="width:100%;margin-bottom: 0px !important;">
+                              <tr>
+                                <td style="width:50%" class="lead">Property:</td>
+                                <td style="width:100%" class="lead"><input class="form-control form-control-lg"
+                                    type="text" placeholder="" name="property" value="<%=property%>"></td>
+                              </tr>
+                            </table>
+                          </li>
+                          <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                            <table style="width:100%;margin-bottom: 0px !important;">
+                              <tr>
+                                <td style="width:50%" class="lead">Id:</td>
+                                <td style="width:50%" class="lead"><input class="form-control form-control-lg"
+                                    type="text" placeholder="" name="id" value="<%= idd %>"></td>
+                              </tr>
+                            </table>
+                          </li>
+                          <li class="list-group-item" style="padding: 0rem 0rem !important;">
+                            <table style="width:100%;margin-bottom: 0px !important;">
+                              <tr>
+                                <td style="width:50%" class="lead">Name:</td>
+                                <td style="width:50%" class="lead"><input class="form-control form-control-lg"
+                                    type="text" placeholder="" name="name" value="<%= nme %>"></td>
+                              </tr>
+                            </table>
+                          </li>
+                        </ul>
+                        <button type="submit" class="btn btn-danger" name="gEditDelete" value="update">Submit</button>
+                        <input type="hidden" value=<%=Table %> name="table"/>
+                      </form>
+                      <hr style="height:2px; width: 20px; background-color: black; width: 100%;">
+        </div>
+        <%if(Table=="legume" ){%>
+          <div class="card-footer text-muted">
+            footer - legume edit
+          </div>
+          <%}else{%>
+            <div class="card-footer text-muted">
+              footer - fruit edit
+            </div>
+            <%}%>
+
+      </div>
+    </div>
+<%- include('partials/foot.ejs') %>

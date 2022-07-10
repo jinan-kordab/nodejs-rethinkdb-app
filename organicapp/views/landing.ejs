@@ -1,0 +1,23 @@
+<%- include('partials/landinghead.ejs') %>
+  <div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img data-test-id="centered-image-bg" src="images/IMG_4088.jpg" class="d-block mx-lg-auto img-fluid"
+          alt="Organic Products" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3" data-test-id="landing-header">Responsive Node.js / RethinkDB app</h1>
+        <p class="lead" data-test-id="landing-description-text">You can use this app to write cypress tests
+          It uses RethinkDb as back end. I used RethinkDB because it has changefeeds. Cypress end to end tests
+          are included in cypress corresponsing folder. Changefeeds are available on Admin page after you 
+          sign up and log in. Keeping a separate Admin page open while performing CRUD operations on tables, 
+          will show you notifications sent from RethinkDB to Admin page. (changefeeds)
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="/login" data-test-id="landing-login-btn" class="btn btn-primary btn-lg px-4 me-md-2">login</a>
+          <a href="/signup" class="btn btn-outline-secondary btn-lg px-4" data-test-id="landing-signup-btn">signup</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<%- include('partials/foot.ejs') %>

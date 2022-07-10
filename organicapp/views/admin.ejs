@@ -1,0 +1,70 @@
+<head>
+  <script src='/socket.io/socket.io.js'></script>
+  <script>
+    var socket = io();
+    socket.on("fruits", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+    });
+
+    socket.on("legumes", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+    });
+    socket.on("organicproducts", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+    });
+
+    socket.on("staplefoods", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+    });
+
+       socket.on("staplefoods", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+    });
+    socket.on("sweets", function (data) {
+      addMessage("OLD VALUE: " + data.oldvalue);
+      addMessage("NEW VALUE: " + data.newvalue);
+      console.log("ADDED MESSAGE -WHJERE IT IS ");
+    });
+
+    socket.on('welcome', function (data) {
+      addMessage(data.message);
+      // Respond with a message including this clients' id sent from the server
+      socket.emit('i am client', { data: 'foo!', id: data.id });
+    });
+
+    // socket.on('time', function (data) {
+    //   addMessage(data.time);
+    // });
+    socket.on('error', console.error.bind(console));
+    socket.on('message', console.log.bind(console));
+
+    function addMessage(message) {
+      var text = document.createTextNode(message),
+        el = document.createElement('li'),
+        messages = document.getElementById('messages');
+
+      el.className += "list-group-item";
+      el.appendChild(text);
+      messages.appendChild(el);
+    }
+  </script>
+  <%- include('partials/header.ejs') %>
+</head>
+<body>
+  <%- include('partials/navbar.ejs') %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card"">
+        <div class=" card-body lead" ">
+          <ul id='messages' class=" list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+</body>

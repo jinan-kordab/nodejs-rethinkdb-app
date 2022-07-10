@@ -1,0 +1,156 @@
+#!/usr/bin/env node
+var app = require("../app");
+var sockio = require("socket.io")(http);
+var debug = require("debug")("organicapp:server");
+var http = require("http");
+var port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+var server = http.createServer(app);
+var io = sockio.listen(server);
+
+//Testing function for Admin Page - Enable when debugging
+// // Send current time to all connected clients
+// function sendTime() {
+//   io.emit('time', { time: new Date().toJSON() });
+// }
+// // Send current time every 10 secs
+// setInterval(sendTime, 1000);
+
+io.sockets.on("connection", function (socket) {
+  // Use socket to communicate with this particular client only, sending it it's own id
+  socket.emit("welcome", { message: "Welcome!", id: socket.id });
+
+  socket.on("i am client", console.log);
+  console.log("connected to socket");
+});
+console.log("Socket IO is listening on port 8008 . . .");
+server.listen(port, function () {
+  console.log("Server up and listening on port %d", port);
+});
+server.on("error", onError);
+server.on("listening", onListening);
+
+var r = require("rethinkdbdash")({ port: "28015", host: "localhost" });
+//Fruit table changes push to io.emit
+r.db("test")
+  .table("fruit")
+  .changes()
+  .run()
+  .then(function (cursor) {
+    cursor.each((error, newdata) =>
+      io.emit("fruits", {
+        oldvalue: JSON.stringify(newdata.old_val),
+        newvalue: JSON.stringify(newdata.new_val),
+      })
+    );
+  })
+  .error(function (err) {
+    console.log(err);
+  });
+
+//Legume table changes push to io.emit
+r.db("test")
+  .table("legume")
+  .changes()
+  .run()
+  .then(function (cursor) {
+    cursor.each((error, newdata) =>
+      io.emit("legumes", {
+        oldvalue: JSON.stringify(newdata.old_val),
+        newvalue: JSON.stringify(newdata.new_val),
+      })
+    );
+  })
+  .error(function (err) {
+    console.log(err);
+  });
+
+//Organicproducts table changes push to io.emit
+r.db("test")
+  .table("organicproducts")
+  .changes()
+  .run()
+  .then(function (cursor) {
+    cursor.each((error, newdata) =>
+      io.emit("organicproducts", {
+        oldvalue: JSON.stringify(newdata.old_val),
+        newvalue: JSON.stringify(newdata.new_val),
+      })
+    );
+  })
+  .error(function (err) {
+    console.log(err);
+  });
+
+//Staplefood table changes
+r.db("test")
+  .table("staplefood")
+  .changes()
+  .run()
+  .then(function (cursor) {
+    cursor.each((error, newdata) =>
+      io.emit("staplefoods", {
+        oldvalue: JSON.stringify(newdata.old_val),
+        newvalue: JSON.stringify(newdata.new_val),
+      })
+    );
+  })
+  .error(function (err) {
+    console.log(err);
+  });
+
+//Sweet table changes push to io.emit
+r.db("test")
+  .table("sweet")
+  .changes()
+  .run()
+  .then(function (cursor) {
+    cursor.each((error, newdata) =>
+      io.emit("sweets", {
+        oldvalue: JSON.stringify(newdata.old_val),
+        newvalue: JSON.stringify(newdata.new_val),
+      })
+    );
+  })
+  .error(function (err) {
+    console.log(err);
+  });
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+  return false;
+}
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
+}

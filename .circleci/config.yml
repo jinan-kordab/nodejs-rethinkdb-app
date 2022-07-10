@@ -1,7 +1,7 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
+working_directory: ~/nodejs-rethinkdb-app/organicapp
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -13,7 +13,7 @@ jobs:
       - image: cimg/node:15.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-     working_directory: ~/nodejs-rethinkdb-app/organicapp
+     
     steps:
       - checkout
       - restore_cache:

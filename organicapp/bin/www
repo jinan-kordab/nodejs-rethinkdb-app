@@ -31,7 +31,7 @@ server.listen(port, function () {
 server.on("error", onError);
 server.on("listening", onListening);
 
-var r = require("rethinkdbdash")({ port: "28015", host: "localhost" });
+var r = require("rethinkdbdash")({ port: "28015", host: "http://192.168.2.250/" });
 //Fruit table changes push to io.emit
 r.db("test")
   .table("fruit")

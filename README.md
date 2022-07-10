@@ -72,3 +72,13 @@ socket.io: Takes care of asyncroneous communications sent by changefeeds from Re
 blog here: <a href = "https://thoughtsonprogramming.wordpress.com/">my blog post</a> including 
 discussion on unit and integration QA testing in Cypress</p>
   </p>
+  
+  <p>
+  You can also install this app from NPM by issuing the following command:
+  <ul>
+  <li>
+  npm i nodejs-rethinkdb-cypress
+  </li>
+  </ul>
+  </p>
+  

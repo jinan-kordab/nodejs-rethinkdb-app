@@ -28,4 +28,4 @@ jobs:
             - ./node_modules
       - run:
           name: test
-          command: npm start
+          command: CD organicapp && npm start

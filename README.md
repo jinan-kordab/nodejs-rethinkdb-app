@@ -1,4 +1,4 @@
-<h3>NodeJs/RethinkDB app for Cypress testing</h3>
+<h3>NodeJs/RethinkDB app for Cypress testing. <b><i>npm i nodejs-rethinkdb-cypress</i></b> </h3>
 
 
 

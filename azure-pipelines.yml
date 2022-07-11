@@ -26,5 +26,6 @@ steps:
   displayName: Package
   inputs:
     command: custom
+    workingDir: '$(Build.SourcesDirectory)/organicapp' # Working folder that contains package.json.
     verbose: false
     customCommand: 'run build'

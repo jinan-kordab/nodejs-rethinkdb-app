@@ -19,9 +19,9 @@ steps:
 # Install and publish npm packages, or run an npm command. Supports npmjs.com and authenticated registries like Azure Artifacts.
 - task: Npm@1
   inputs:
-    command: custom
+    command: install
     workingDir: '$(Build.SourcesDirectory)/organicapp' # Working folder that contains package.json. 
-    customCommand: npm i # Required when command = custom. Command and arguments. 
+    
 - task: Npm@1
   displayName: Package
   inputs:

@@ -16,10 +16,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    workingDir: '$(Build.SourcesDirectory)/organicapp'
     npm install
-    targetFolder: '$(Build.SourcesDirectory)/organicapp'
   displayName: 'npm install'
 
 - script: |
+    workingDir: '$(Build.SourcesDirectory)/organicapp'
     npm run build
   displayName: 'npm build'

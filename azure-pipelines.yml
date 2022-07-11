@@ -1,0 +1,31 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+  displayName: 'Install Node.js'
+
+# npm v1
+# Install and publish npm packages, or run an npm command. Supports npmjs.com and authenticated registries like Azure Artifacts.
+- task: Npm@1
+  inputs:
+    command: install
+    workingDir: '$(Build.SourcesDirectory)/organicapp' # Working folder that contains package.json. 
+    
+- task: Npm@1
+  displayName: Package
+  inputs:
+    command: custom
+    workingDir: '$(Build.SourcesDirectory)/organicapp' # Working folder that contains package.json.
+    verbose: false
+    customCommand: 'run build'

@@ -17,10 +17,9 @@ steps:
 
 - script: |
     npm install
-    workingDir: '$(Build.SourcesDirectory)/organicapp'
+    targetFolder: '$(Build.SourcesDirectory)/organicapp'
   displayName: 'npm install'
 
 - script: |
     npm run build
-     workingDir: '$(Build.SourcesDirectory)/organicapp'
   displayName: 'npm build'

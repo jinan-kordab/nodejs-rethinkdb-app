@@ -20,5 +20,5 @@ steps:
 - script: |
     npm install
     npm run build
-    workingDirectory: '$(Build.SourcesDirectory)/organicapp'
+    workingDirectory: '$(Build.Repository.LocalPath)/organicapp'
   displayName: 'npm install and build'

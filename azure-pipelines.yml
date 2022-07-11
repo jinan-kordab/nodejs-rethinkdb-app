@@ -17,7 +17,7 @@ steps:
 
 - script: |
     npm install
-    workingDirectory: '$(Build.Repository.LocalPath)/home/vsts/work/organicapp'
+    workingDirectory: '$(Build.SourcesDirectory)/nodejs-rethinkdb-app'
   displayName: 'npm install'
 
 - script: |

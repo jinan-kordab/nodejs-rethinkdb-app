@@ -15,16 +15,16 @@ steps:
     versionSpec: '16.x'
   displayName: 'Install Node.js'
 
--task: NPM INSTALL
-    displayName:'npm install'
-    inputs:
-      workingDirectory: '$(Build.SourcesDirectory)/organicapp'
-      script: |
-        npm install
-  
--task: NPM BUILD
-    displayName: 'npm build'
-    inputs:
-      workingDirectory: '$(Build.SourcesDirectory)/organicapp'
-      script: |
-        npm run build
+# npm v1
+# Install and publish npm packages, or run an npm command. Supports npmjs.com and authenticated registries like Azure Artifacts.
+- task: Npm@1
+  inputs:
+    command: custom
+    workingDir: '$(Build.SourcesDirectory)/organicapp' # Working folder that contains package.json. 
+    customCommand: npm i # Required when command = custom. Command and arguments. 
+- task: Npm@1
+  displayName: Package
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build'

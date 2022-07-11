@@ -17,9 +17,10 @@ steps:
 
 - script: |
     npm install
-    workingDirectory: '$(Build.SourcesDirectory)/nodejs-rethinkdb-app'
+    workingDir: '$(Build.SourcesDirectory)/organicapp'
   displayName: 'npm install'
 
 - script: |
     npm run build
+     workingDir: '$(Build.SourcesDirectory)/organicapp'
   displayName: 'npm build'

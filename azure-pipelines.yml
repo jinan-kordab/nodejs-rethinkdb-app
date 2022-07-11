@@ -17,6 +17,7 @@ steps:
 
 - script: |
     npm install
+    workingDirectory: '$(Build.Repository.LocalPath)/home/vsts/work/organicapp'
   displayName: 'npm install'
 
 - script: |
